@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "tortoise-gis"
+version = "0.1.0"
+description = "Geometrical and Geographical support for Tortoise ORM."
+authors = ["Eduardo Rezende <eduardorbr7@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/revensky/tortoise-gis"
+repository = "https://github.com/revensky/tortoise-gis.git"
+keywords = ["Tortoise", "GIS"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+packages = [{ include = "tortoise_gis", from = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+tortoise-orm = "^0.16.14"
+pypika-gis = "^1.3.0"
+shapely = "^1.7.1"
+geojson = "^2.5.0"
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.6.0"
+black = "^20.8b1"
+asyncpg = "^0.21.0"
+python-dotenv = "^0.14.0"
+sphinx = "^3.2.1"
+sphinx_rtd_theme = "^0.5.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
