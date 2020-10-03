@@ -2,12 +2,12 @@ import os
 import sys
 
 
-sys.path.insert(0, os.path.join("..", "src", "jose"))
+sys.path.insert(0, os.path.join("..", "src", "tortoise_gis"))
 
 project = "Tortoise GIS"
 copyright = "2020, Eduardo Ribeiro Rezende"  # pylint: disable=redefined-builtin
 author = "Eduardo Ribeiro Rezende"
-release = "0.1.1"
+release = "0.1.2"
 
 extensions = [
     "sphinx.ext.autodoc",

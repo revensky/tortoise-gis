@@ -13,7 +13,7 @@ requirements = [
 
 setuptools.setup(
     name="tortoise-gis",
-    version="0.1.1",
+    version="0.1.2",
     author="Eduardo Ribeiro Rezende",
     author_email="eduardorbr7@gmail.com",
     license="MIT",
