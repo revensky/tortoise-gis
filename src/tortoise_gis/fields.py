@@ -3,7 +3,7 @@ from typing import Any, Type, Union
 import shapely.wkb
 import shapely.wkt
 from tortoise import Model
-from tortoise.exceptions import FieldError
+from tortoise.exceptions import FieldError, OperationalError
 from tortoise.fields import Field
 from shapely.errors import WKBReadingError, WKTReadingError
 from shapely.geometry import (
@@ -18,7 +18,7 @@ from shapely.geometry import (
 from shapely.geometry.base import BaseGeometry
 
 
-class GeometryField(Field, str):
+class GeometryField(Field):
     """
     Base Geometry Field.
 
@@ -56,14 +56,19 @@ class GeometryField(Field, str):
     SQL_TYPE: str = "GEOMETRY"
 
     def __init__(
-        self, srid: int = None, spatial_index: bool = True, **kwargs: Any
+        self,
+        srid: int = None,
+        spatial_index: bool = True,
+        **kwargs: Any,
     ) -> None:
         self.srid = srid
         self.spatial_index = spatial_index
         super().__init__(**kwargs)
 
     def to_db_value(
-        self, value: BaseGeometry, instance: Union[Type[Model], Model]
+        self,
+        value: BaseGeometry,
+        instance: Union[Type[Model], Model],
     ) -> str:
         if value is None:
             return value
@@ -77,12 +82,17 @@ class GeometryField(Field, str):
         if value is None or isinstance(value, BaseGeometry):
             return value
 
-        if not isinstance(value, str):
-            raise FieldError(f'Invalid input type: "{type(value)}", expected "str".')
+        if not isinstance(value, (bytes, str)):
+            raise FieldError(f'Invalid type: "{type(value)}", expected "bytes or str".')
+
+        if isinstance(value, bytes):
+            try:
+                return shapely.wkb.loads(value)
+            except WKBReadingError as exc:
+                raise OperationalError("Could not parse the provided data.") from exc
 
         try:
-            # Prevents "ParseException: Invalid HEX char."
-            int(value, 16)
+            int(value, 16)  # Prevents "ParseException: Invalid HEX char."
             return shapely.wkb.loads(value, hex=True)
         except (ValueError, WKBReadingError):
             pass
@@ -91,6 +101,8 @@ class GeometryField(Field, str):
             return shapely.wkt.loads(value)
         except WKTReadingError:
             pass
+
+        raise OperationalError("Could not parse the provided data.")
 
 
 class PointField(GeometryField):

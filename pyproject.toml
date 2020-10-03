@@ -19,9 +19,7 @@ packages = [{ include = "tortoise_gis", from = "src" }]
 [tool.poetry.dependencies]
 python = "^3.8"
 tortoise-orm = "^0.16.14"
-pypika-gis = "^1.3.0"
 shapely = "^1.7.1"
-geojson = "^2.5.0"
 
 [tool.poetry.dev-dependencies]
 pylint = "^2.6.0"
@@ -33,5 +31,5 @@ sphinx_rtd_theme = "^0.5.0"
 rstcheck = "^3.3.1"
 
 [build-system]
-requires = ["poetry>=0.12"]
+requires = ["poetry>=1.0.10"]
 build-backend = "poetry.masonry.api"
