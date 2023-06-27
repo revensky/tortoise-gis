@@ -6,9 +6,8 @@ Currently it only supports PostGIS and **IS NOT** production ready.
 
 Roadmap:
 
--   [] Support Geometry
+-   [X] Support Geometry
 -   [] Support Geography
--   [] Support SpatiaLite
 
 # License
 
