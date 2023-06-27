@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tortoise-gis"
-version = "0.1.2"
+version = "0.1.3"
 description = "Geometrical and Geographical support for Tortoise ORM."
 authors = ["Eduardo Rezende <eduardorbr7@gmail.com>"]
 license = "MIT"

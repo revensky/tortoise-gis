@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.join("..", "src", "tortoise_gis"))
 project = "Tortoise GIS"
 copyright = "2020, Eduardo Ribeiro Rezende"  # pylint: disable=redefined-builtin
 author = "Eduardo Ribeiro Rezende"
-release = "0.1.2"
+release = "0.1.3"
 
 extensions = [
     "sphinx.ext.autodoc",
