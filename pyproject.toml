@@ -14,7 +14,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-packages = [{ include = "tortoise_gis", from = "src" }]
+packages = [{ include = "tortoise_gis" }]
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -27,6 +27,9 @@ black = "^23.3.0"
 asyncpg = "^0.27.0"
 python-dotenv = "^1.0.0"
 rstcheck = "^6.1.2"
+
+[tool.isort]
+profile = "black"
 
 [build-system]
 requires = ["poetry>=1.5.0"]
